@@ -6,7 +6,7 @@ const Nav: React.FC = () => {
   return (
     <nav className="">
       <Link to=''> 
-         <h1 className="bg-transparent text-3xl font-semibold ">Where in the world?</h1>
+         <h1 className="mt-3 mb-3 text-3xl font-semibold bg-transparen">Where in the world?</h1>
           </Link>
     </nav>
   );

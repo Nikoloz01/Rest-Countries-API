@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './app';
+import './index.css'; // Import your CSS styles
+import App from './app'; // Import your main component
 
-const root = document.getElementById('root');
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="page-container">
+      <div className="content-container">
+        <App />
+      </div>
+    </div>
   </React.StrictMode>,
-  root
+  document.getElementById('root')
 );

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import 'react-loading-skeleton/dist/skeleton.css'
+import CardSkeleton from './CardSkeleton';
 
 interface Country {
   flag: string;
@@ -67,26 +69,35 @@ const AllCountries: React.FC<AllCountriesProps> = ({ searchTerm, regionFilter })
 
   return (
     <div>
-      <div className='gridContainer gap-10 pl-14 pr-14 '>
+       
+      <div className='gap-10 gridContainer pl-14 pr-14'>
         {loading ? (
-          <div>Loading...</div>
+         <div className='w-full gap-10 skeletonContainer pl-14 pr-14'>
+          {[...Array(5)].map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
         ) : (
           currentCountries.map(country => (
             <Link key={country.name} to={`/country/${country.name}`}>
-              <div className="min-w-[200px] rounded-t-lg max-w-[375px] dark:bg-gray-800 object-fit mt-10 shadow-md" style={{ boxShadow: '0px 2px 5px 1px rgba(0, 0, 0, 0.37)' }}>
+              <div className='countryWrapper'>
+              <div className=" min-w-[200px] rounded-t-lg max-w-[375px] dark:bg-gray-800 object-fit mt-10 shadow-md" style={{ boxShadow: '0px 2px 5px 1px rgba(0, 0, 0, 0.37)' }}>
                 <img className="rounded-t-lg min-h-[200px] object-cover" src={country.flag} alt="flag" />
-                <div className='p-5 pt-3 flex flex-col gap-2'>
-                  <p className=' pb-3 pr-2 font-bold text-xl'>{country.name}</p>
+                <div className='flex flex-col gap-2 p-5 pt-3'>
+                  <p className='pb-3 pr-2 text-xl font-bold '>{country.name}</p>
                   <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
                   <p><strong>Region:</strong> {country.region}</p>
-                  <p><strong>Capital:</strong> {country.capital}</p>
+                  <p><strong>Capital:</strong> {country.capital} </p>
                 </div>
               </div>
+              </div>
             </Link>
+            
           ))
         )}
       </div>
-      <div className='flex justify-center mt-5'>
+      
+      <div className='flex justify-center p-10'>
         {getPageNumbers().map((pageNumber, index) => (
           <button
             key={index}

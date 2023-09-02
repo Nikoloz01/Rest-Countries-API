@@ -50,9 +50,9 @@ const FullCountry: React.FC = () => {
   }, [country]);
 
   return (
-    <div className="min-h-[100vh] dark:bg-gray-900 pb-10">
+    <div className="pb-10 countryInfoWrapper dark:bg-gray-900">
       <button
-        className=' flex items-center gap-3 ml-14 m-10 mb-14 pr-5 pl-3 p-1 shadow-md'
+        className='flex items-center gap-3 p-1 pl-3 pr-5 m-10 shadow-md dark:bg-gray-800 ml-14 mb-14'
         style={{boxShadow: '1px 1px 5px 1px rgba(0, 0, 0, 0.37)'}}
         onClick={() => navigate(-1)}
       >
@@ -65,31 +65,31 @@ const FullCountry: React.FC = () => {
         ) : country && (
           <div className='countryPage '> 
             <div>
-              <img className='max-w-[400px] mb-10' src={country.flag} alt='flag' />
+              <img className='mb-10 ' src={country.flag} alt='flag' />
             </div>
             <div>
-              <h1 className='text-3xl font-bold mb-5'>{country.name}</h1>
-              <div className='countryPageInfo flex gap-20'>
-                <div className='flex gap-1 flex-col mb-6'>
+              <h1 className='mb-5 text-3xl font-bold'>{country.name}</h1>
+              <div className='flex gap-20 countryPageInfo'>
+                <div className='flex flex-col gap-1 mb-6'>
                   <p><strong>Native Name:</strong> {country.nativeName}</p>
                   <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
                   <p><strong>Region:</strong> {country.region}</p>
                   <p><strong>Sub Region:</strong> {country.subregion}</p>
                   <p><strong>Capital:</strong> {country.capital}</p>
                 </div>
-                <div className='flex gap-1 flex-col'>
+                <div className='flex flex-col gap-1'>
                   <p><strong>Top Level Domain:</strong> {country.topLevelDomain}</p>
                   <p><strong>Currencies:</strong> {country.currencies.map(currency => currency.code)}</p>
                   <p><strong>Languages:</strong> {country.languages.map(language => language.name).join(', ')}</p>
                 </div>
               </div>
-              <div className='borderInfo flex mb-10'>
-                <strong className='BIS pr-10'>Border Countries:</strong>
-                <div className='flex flex-wrap gap-4'>
+              <div className='flex mb-10 borderInfo'>
+                <strong className='pr-10 BIS'>Border Countries:</strong>
+                <div className='flex flex-wrap gap-4 borderedCountries'>
                   {borderCountries.length > 0 ? (
                     borderCountries.map(borderCountry => (
                       <Link
-                        className=' dark:bg-gray-800 text-base pr-5 pl-3 p-1 shadow-md'
+                        className='p-1 pl-3 pr-5 text-base shadow-md dark:bg-gray-800'
                         style={{boxShadow: '0px 0px 3px 1px rgba(0, 0, 0, 0.37)'}}
                         key={borderCountry.name}
                         to={`/country/${borderCountry.name}`}

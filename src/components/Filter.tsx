@@ -31,9 +31,9 @@ const Filter: React.FC<FilterProps> = ({ regionFilter, setRegionFilter }) => {
   const selectedRegionLabel = regions.find(region => region.value === regionFilter)?.label;
 
   return (
-    <div className='dark:bg-gray-800 flex items-center cursor-pointer min-h-[50px] min-w-[190px] pl-5 pr-5 relative shadow-md' style={{ boxShadow: '1px 1px 5px 1px rgba(0, 0, 0, 0.37)' }}>
+    <div className='dark:bg-gray-800  items-center cursor-pointer min-h-[50px] flex min-w-[190px] pl-5 pr-5 relative shadow-md' style={{ boxShadow: '1px 1px 5px 1px rgba(0, 0, 0, 0.37)' }}>
       <div onClick={() => setIsOpen(!isOpen)}>
-        <div className=' flex items-center justify-between ' style={{ width: '150px' }}>
+        <div className='flex items-center justify-between ' style={{ width: '150px' }}>
           {selectedRegionLabel}
           <IoIosArrowDown />
         </div>

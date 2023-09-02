@@ -3,10 +3,19 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap');
 
+html {
+  display: flex;
+  justify-content: center;
+}
+body {
+  @apply  dark:bg-gray-900 w-full max-w-[1920px] dark:text-white
+}
 .wrapper {
   font-family: 'Nunito Sans', sans-serif;
+  width: 100%;
 
 }
+
 .light-mode {
     background-color: #ffffff;
     color: #000000;
@@ -31,25 +40,36 @@
 }
 
 .search-box {
-    @apply inline-flex flex-row items-center gap-5 shadow-md p-2 pl-5 pr-20;
+    @apply inline-flex flex-row items-center gap-5 p-2 pl-5 pr-20 shadow-md;
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.37);
   }
 
- .gridContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-  grid-gap: 30px;
-  grid-auto-flow: dense;
-  }  
-
+ .gridContainer,
+ .skeletonContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    grid-gap: 30px;
+    grid-auto-flow: dense;
+  } 
+  .skeletonBox{
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.37);
+  }
+  .skeletonContainer {
+    grid-template-columns: repeat(auto-fill, minmax(250x,1fr));
+  }
+  
   .countryPage{
     display: flex;
     gap : 60px;
     margin-left: 50px;
-    margin-right:20px;
+  }
+  .countryPage img{
+    max-width: 600px;
+    max-height: 400px;
+    
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1170px) {
     
     .countryPageInfo{
       display: block;
@@ -57,20 +77,44 @@
     }
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 990px) {
     .countryPage {
       display: block;
     }
     .countryPage img {
+      max-width: 800px;
       width: 100%;
+      margin-right: 56px;
     }
     .borderInfo{
       display: block;
       gap: 20px;
       
     }
+    .countryWrapper{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .borderedCountries{
+      margin-top: 15px;
+    }
+     
     
   }
+
+  @media (max-width: 530px){
+    .navWrapper{
+      display: block;
+    }
+    .navWrapper button {
+      margin-top: 10px;
+    }
+    
+  }
+
 
 
 
