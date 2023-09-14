@@ -21,8 +21,8 @@ const AllCountries: React.FC<AllCountriesProps> = ({ searchTerm, regionFilter })
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20; // Number of items per page
-  const pagesToShow = 6; // Number of pages to show in the pagination
+  const itemsPerPage = 20; 
+  const pagesToShow = 6;
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -69,19 +69,19 @@ const AllCountries: React.FC<AllCountriesProps> = ({ searchTerm, regionFilter })
 
   return (
     <div>
-       
-      <div className='gap-10 gridContainer pl-14 pr-14'>
+      <div className='skeletonContainer pl-14 pr-14'>
         {loading ? (
-         <div className='w-full gap-10 skeletonContainer pl-14 pr-14'>
-          {[...Array(5)].map((_, index) => (
+          [...Array(5)].map((_, index) => (
             <CardSkeleton key={index} />
-          ))}
-        </div>
-        ) : (
-          currentCountries.map(country => (
-            <Link key={country.name} to={`/country/${country.name}`}>
-              <div className='countryWrapper'>
-              <div className=" min-w-[200px] rounded-t-lg max-w-[375px] dark:bg-gray-800 object-fit mt-10 shadow-md" style={{ boxShadow: '0px 2px 5px 1px rgba(0, 0, 0, 0.37)' }}>
+          ))
+        ) : null}
+      </div>
+
+      <div className='pl-14 gridContainer pr-14 '>
+        {currentCountries.map(country => (
+          <Link key={country.name} to={`/country/${country.name}`}>
+            <div className='countryWrapper'>
+              <div className="min-w-[200px] rounded-t-lg max-w-[375px] dark:bg-gray-800 object-fit mt-10 shadow-md" style={{ boxShadow: '0px 2px 5px 1px rgba(0, 0, 0, 0.37)' }}>
                 <img className="rounded-t-lg min-h-[200px] object-cover" src={country.flag} alt="flag" />
                 <div className='flex flex-col gap-2 p-5 pt-3'>
                   <p className='pb-3 pr-2 text-xl font-bold '>{country.name}</p>
@@ -90,13 +90,11 @@ const AllCountries: React.FC<AllCountriesProps> = ({ searchTerm, regionFilter })
                   <p><strong>Capital:</strong> {country.capital} </p>
                 </div>
               </div>
-              </div>
-            </Link>
-            
-          ))
-        )}
+            </div>
+          </Link>
+        ))}
       </div>
-      
+
       <div className='flex justify-center p-10'>
         {getPageNumbers().map((pageNumber, index) => (
           <button
